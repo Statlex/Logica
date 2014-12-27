@@ -1,0 +1,278 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.statlex.games.logica</groupId>
+	<artifactId>logica</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>logica</name>
+
+	<properties>
+		<java-version>1.7</java-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- libraries versions -->
+		<spring.version>4.0.2.RELEASE</spring.version>
+        
+        <!-- Default profiles configuraiton, mac os, development environment -->
+        <os.properties>${config.path}/mac.properties</os.properties>
+        <environment.properties>${config.path}/dev.properties</environment.properties>
+    </properties>
+
+	<!-- Base portal modules -->
+	<modules>
+		<module>integration</module>
+    </modules>
+
+	<!-- Application profiles -->
+	<profiles>
+		<!-- OS specific profiles -->
+		<profile>
+            <id>mac</id>
+            <properties>
+                <os.properties>${config.path}/mac.properties</os.properties>
+            </properties>
+        </profile>
+        
+		<!-- Environemt profiles -->
+		<!-- Development profile -->
+		<profile>
+			<id>dev</id>
+			<properties>
+				<environment.properties>${config.path}/dev.properties</environment.properties>
+			</properties>
+		</profile>
+
+	</profiles>
+
+	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</testResource>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>*/**</include>
+				</includes>
+			</testResource>
+		</testResources>
+
+		<!-- Plugins version management -->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>2.9</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.3.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.3</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>versions-maven-plugin</artifactId>
+					<version>1.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.10</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.7</version>
+				</plugin>
+				<plugin>
+					<groupId>com.github.bringking</groupId>
+					<artifactId>requirejs-maven-plugin</artifactId>
+					<version>2.0.4</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>properties-maven-plugin</artifactId>
+					<version>1.0-alpha-2</version>
+				</plugin>
+				<plugin>
+				    <groupId>org.codehaus.gmaven</groupId>
+				    <artifactId>gmaven-plugin</artifactId>
+				    <version>1.4</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<!-- Plusing configuration -->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+					<compilerArgument>-Xlint:all</compilerArgument>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+					<warSourceDirectory>${basedir}/src/main/webapp</warSourceDirectory>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<!-- Groovy configuration file, recursively scan directories till config and set config path variable -->
+			<plugin>
+			    <groupId>org.codehaus.gmaven</groupId>
+			    <artifactId>gmaven-plugin</artifactId>
+			    <executions>
+			        <execution>
+			            <phase>initialize</phase>
+			            <goals>
+			                <goal>execute</goal>
+			            </goals>
+			            <configuration>
+			                <source>
+			                    java.io.File file = new java.io.File(project.basedir.absolutePath.replace(java.io.File.separator,'/'));
+								while (!java.util.Arrays.asList(file.list()).contains('config')) {
+									file = file.getParentFile();
+								}
+								project.properties['config.path'] = file.getAbsoluteFile().toString() + '/config';
+			            	</source>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
+
+			<!-- Read maven properties from configuration files -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>initialize</phase>
+						<goals>
+							<goal>read-project-properties</goal>
+						</goals>
+						<configuration>
+							<inherited>true</inherited>
+							<files>
+								<file>${config.path}/default.properties</file>
+								<file>${os.properties}</file>
+								<file>${environment.properties}</file>
+							</files>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- Dependency management -->
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- Spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<!-- Bean Factory and JavaBeans utilities (depends on spring-core) Define 
+				this if you use Spring Bean APIs (org.springframework.beans.*) -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+        </dependencies>
+	</dependencyManagement>
+
+	<repositories>
+		
+		<repository>
+    		<id>central</id>
+    		<name>Central Repository</name>
+    		<url>http://repo.maven.apache.org/maven2</url>
+    		<layout>default</layout>
+    		<snapshots>
+    			<enabled>false</enabled>
+    		</snapshots>
+    	</repository>
+    	
+    	<repository>
+        	<id>io.spring.repo.maven.release</id>
+        	<url>http://repo.spring.io/release/</url>
+        	<snapshots><enabled>false</enabled></snapshots>
+    	</repository>
+
+	</repositories>
+	
+
+</project>

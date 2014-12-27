@@ -1,12 +1,44 @@
 *.class
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
 # Package Files #
 *.jar
 *.war
 *.ear
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# Mac files #
+.DS_store
+
+# Android files #
+
+*.apk
+*.dex
+*.ap_
+gen/
+
+# Database files #
+*.bak
+
+# Eclipse/Idea files #
+.project
+.metadata/
+.classpath
+.settings/
+target/
+bin/
+test-output/
+*.ldb
+.idea/
+*.iml
+*.ipr
+*.ids
+*.iws
+*.svn/
+*.log
+
+# Xcode build files #
+events/ios/viadeo-events/build/
+events/ios/viadeo-events/viadeo-events.xcodeproj/project.xcworkspace/xcuserdata/
+events/ios/space/build/
+events/ios/space/space.xcodeproj/project.xcworkspace/xcuserdata/
+
+events/ios/space/space.xcodeproj/xcuserdata/

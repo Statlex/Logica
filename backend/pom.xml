@@ -15,27 +15,31 @@
 
 		<!-- libraries versions -->
 		<spring.version>4.0.2.RELEASE</spring.version>
-        
-        <!-- Default profiles configuraiton, mac os, development environment -->
-        <os.properties>${config.path}/mac.properties</os.properties>
-        <environment.properties>${config.path}/dev.properties</environment.properties>
-    </properties>
+		<hibernate.version>4.3.7.Final</hibernate.version>
+		<hibernate.validator.version>5.1.3.Final</hibernate.validator.version>
+		<mysql.connector.version>5.1.29</mysql.connector.version>
+
+
+		<!-- Default profiles configuraiton, mac os, development environment -->
+		<os.properties>${config.path}/mac.properties</os.properties>
+		<environment.properties>${config.path}/dev.properties</environment.properties>
+	</properties>
 
 	<!-- Base portal modules -->
 	<modules>
 		<module>integration</module>
-    </modules>
+	</modules>
 
 	<!-- Application profiles -->
 	<profiles>
 		<!-- OS specific profiles -->
 		<profile>
-            <id>mac</id>
-            <properties>
-                <os.properties>${config.path}/mac.properties</os.properties>
-            </properties>
-        </profile>
-        
+			<id>mac</id>
+			<properties>
+				<os.properties>${config.path}/mac.properties</os.properties>
+			</properties>
+		</profile>
+
 		<!-- Environemt profiles -->
 		<!-- Development profile -->
 		<profile>
@@ -130,9 +134,9 @@
 					<version>1.0-alpha-2</version>
 				</plugin>
 				<plugin>
-				    <groupId>org.codehaus.gmaven</groupId>
-				    <artifactId>gmaven-plugin</artifactId>
-				    <version>1.4</version>
+					<groupId>org.codehaus.gmaven</groupId>
+					<artifactId>gmaven-plugin</artifactId>
+					<version>1.4</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -186,27 +190,29 @@
 				</configuration>
 			</plugin>
 
-			<!-- Groovy configuration file, recursively scan directories till config and set config path variable -->
+			<!-- Groovy configuration file, recursively scan directories till config 
+				and set config path variable -->
 			<plugin>
-			    <groupId>org.codehaus.gmaven</groupId>
-			    <artifactId>gmaven-plugin</artifactId>
-			    <executions>
-			        <execution>
-			            <phase>initialize</phase>
-			            <goals>
-			                <goal>execute</goal>
-			            </goals>
-			            <configuration>
-			                <source>
-			                    java.io.File file = new java.io.File(project.basedir.absolutePath.replace(java.io.File.separator,'/'));
-								while (!java.util.Arrays.asList(file.list()).contains('config')) {
+				<groupId>org.codehaus.gmaven</groupId>
+				<artifactId>gmaven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>initialize</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+						<configuration>
+							<source>
+								java.io.File file = new java.io.File(project.basedir.absolutePath.replace(java.io.File.separator,'/'));
+								while (!java.util.Arrays.asList(file.list()).contains('config'))
+								{
 									file = file.getParentFile();
 								}
 								project.properties['config.path'] = file.getAbsoluteFile().toString() + '/config';
-			            	</source>
-			            </configuration>
-			        </execution>
-			    </executions>
+							</source>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 
 			<!-- Read maven properties from configuration files -->
@@ -244,6 +250,24 @@
 				<version>${spring.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
 			<!-- Bean Factory and JavaBeans utilities (depends on spring-core) Define 
 				this if you use Spring Bean APIs (org.springframework.beans.*) -->
 			<dependency>
@@ -251,28 +275,63 @@
 				<artifactId>spring-beans</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-        </dependencies>
+
+			<!-- Hibernate -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate.validator.version}</version>
+			</dependency>
+
+			<!-- JPA API -->
+			<dependency>
+				<groupId>org.hibernate.javax.persistence</groupId>
+				<artifactId>hibernate-jpa-2.1-api</artifactId>
+				<version>1.0.0.Final</version>
+			</dependency>
+
+			<!-- MySql connector -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.connector.version}</version>
+			</dependency>
+		</dependencies>
 	</dependencyManagement>
 
 	<repositories>
-		
+
 		<repository>
-    		<id>central</id>
-    		<name>Central Repository</name>
-    		<url>http://repo.maven.apache.org/maven2</url>
-    		<layout>default</layout>
-    		<snapshots>
-    			<enabled>false</enabled>
-    		</snapshots>
-    	</repository>
-    	
-    	<repository>
-        	<id>io.spring.repo.maven.release</id>
-        	<url>http://repo.spring.io/release/</url>
-        	<snapshots><enabled>false</enabled></snapshots>
-    	</repository>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>http://repo.maven.apache.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>io.spring.repo.maven.release</id>
+			<url>http://repo.spring.io/release/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 
 	</repositories>
-	
+
 
 </project>

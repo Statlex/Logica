@@ -8,13 +8,17 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.statlex.games.logica.repository</groupId>
+	<groupId>com.statlex.games.logica.integration.repository</groupId>
 	<artifactId>repository</artifactId>
 	<packaging>pom</packaging>
 
 	<name>repository</name>
 
 	<!-- Repository modules -->
+    <modules>
+        <module>logica-base-repository-api</module>
+        <module>logica-base-repository</module>
+    </modules>
 
 
 

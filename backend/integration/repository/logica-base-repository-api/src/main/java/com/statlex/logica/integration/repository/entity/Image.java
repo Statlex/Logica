@@ -11,8 +11,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * Persistent class for IMAGES database table.
  * 
+ * Persistent class for IMAGES database table.
+ *
+ * @author pavel.sychykau
+ * @version 0.1 Dec 30, 2014
  */
 @Entity
 @Table(name = "IMAGES")

@@ -12,8 +12,11 @@ import javax.persistence.Table;
 import com.statlex.logica.integration.repository.entity.id.TaskId;
 
 /**
- * Persistent class for TASKS database table.
  * 
+ * Persistent class for TASKS database table.
+ *
+ * @author pavel.sychykau
+ * @version 0.1 Dec 30, 2014
  */
 @Entity
 @Table(name = "TASKS")

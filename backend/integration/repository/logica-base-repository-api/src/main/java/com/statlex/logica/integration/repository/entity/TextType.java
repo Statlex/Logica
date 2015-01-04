@@ -11,8 +11,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * Persistent class for TEXT_TYPES database table.
  * 
+ * Persistent class for TEXT_TYPES database table.
+ *
+ * @author pavel.sychykau
+ * @version 0.1 Dec 30, 2014
  */
 @Entity
 @Table(name = "TEXT_TYPES")

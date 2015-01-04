@@ -10,8 +10,11 @@ import javax.persistence.Table;
 import com.statlex.logica.integration.repository.entity.id.UserProfileId;
 
 /**
- * Persistent class for USER_PROFILES database table.
  * 
+ * Persistent class for USER_PROFILES database table.
+ *
+ * @author pavel.sychykau
+ * @version 0.1 Dec 30, 2014
  */
 @Entity
 @Table(name = "USER_PROFILES")

@@ -17,5 +17,8 @@
     <name>common</name>
 
     <!-- Common modules -->
+    <modules>
+        <module>logica-common-exception</module>
+    </modules>
 
 </project>

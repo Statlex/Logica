@@ -6,8 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
- * Embeddable class for TEXT table ID.
  * 
+ * Embeddable class for TEXT table ID.
+ *
+ * @author pavel.sychykau
+ * @version 0.1 Jan 3, 2015
  */
 @Embeddable
 public class TextId implements Serializable {

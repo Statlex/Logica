@@ -6,8 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
- * Embeddable class for USER_PROFILES table ID.
  * 
+ * Embeddable class for USER_PROFILES table ID.
+ *
+ * @author pavel.sychykau
+ * @version 0.1 Jan 3, 2015
  */
 @Embeddable
 public class UserProfileId implements Serializable {

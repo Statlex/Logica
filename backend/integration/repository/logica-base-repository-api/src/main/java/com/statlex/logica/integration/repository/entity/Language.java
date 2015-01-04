@@ -1,9 +1,17 @@
 package com.statlex.logica.integration.repository.entity;
 
-import javax.persistence.*;
+import java.util.Collection;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
- * The persistent class for language database table.
+ * Persistent class for LANGUAGE database table.
  * 
  */
 @Entity
@@ -17,6 +25,15 @@ public class Language {
 
 	@Column(name = "LANG_DESC")
 	private String langDescription;
+
+	@OneToMany(mappedBy = "language")
+	private Collection<UserProfile> userProfiles;
+
+	@OneToMany(mappedBy = "language")
+	private Collection<Category> categories;
+
+	@OneToMany(mappedBy = "language")
+	private Collection<Text> texts;
 
 	public Long getLangId() {
 		return langId;
@@ -32,6 +49,30 @@ public class Language {
 
 	public void setLangDescription(String langDescription) {
 		this.langDescription = langDescription;
+	}
+
+	public Collection<UserProfile> getUserProfiles() {
+		return userProfiles;
+	}
+
+	public void setUserProfiles(Collection<UserProfile> userProfiles) {
+		this.userProfiles = userProfiles;
+	}
+
+	public Collection<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Collection<Category> categories) {
+		this.categories = categories;
+	}
+
+	public Collection<Text> getTexts() {
+		return texts;
+	}
+
+	public void setTexts(Collection<Text> texts) {
+		this.texts = texts;
 	}
 
 }

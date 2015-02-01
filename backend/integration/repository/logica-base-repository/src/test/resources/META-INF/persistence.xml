@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+		http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+	<persistence-unit name="logicaPersistenceUnitTest"
+		transaction-type="RESOURCE_LOCAL">
+
+		<!-- Entities. -->
+		<class>com.statlex.logica.integration.repository.entity.Category</class>
+		<class>com.statlex.logica.integration.repository.entity.Image</class>
+		<class>com.statlex.logica.integration.repository.entity.Language</class>
+		<class>com.statlex.logica.integration.repository.entity.Task</class>
+		<class>com.statlex.logica.integration.repository.entity.Text</class>
+		<class>com.statlex.logica.integration.repository.entity.TextType</class>
+		<class>com.statlex.logica.integration.repository.entity.Theme</class>
+		<class>com.statlex.logica.integration.repository.entity.UserProfile</class>
+		
+		<properties>
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.connection.useUnicode" value="true" />
+			<property name="hibernate.connection.characterEncoding"
+				value="UTF-8" />
+			<property name="hibernate.connection.charSet" value="UTF-8" />
+		</properties>
+	</persistence-unit>
+
+</persistence>

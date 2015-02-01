@@ -1,14 +1,13 @@
 package com.statlex.logica.integration.repository.entity;
 
 import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.statlex.logica.integration.repository.entity.id.TextId;
 
 /**
@@ -28,13 +27,16 @@ public class Text {
 	@Column(name = "TEXT_DESC")
 	private String textDescription;
 
-	@MapsId("languageId")
+	@MapsId("langId")
+	@ManyToOne
 	private Language language;
 
 	@MapsId("typeId")
+	@ManyToOne
 	private TextType type;
 
 	@MapsId("taskId")
+	@ManyToOne
 	private Task task;
 
 	@OneToMany(mappedBy = "text")

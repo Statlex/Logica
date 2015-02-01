@@ -1,7 +1,6 @@
 package com.statlex.logica.integration.repository.entity;
 
 import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +28,7 @@ public class TextType {
 	@Column(name = "TYPE_DESC")
 	private String typeDescription;
 
-	@OneToMany(mappedBy = "texts")
+	@OneToMany(mappedBy = "type")
 	private Collection<Text> texts;
 
 	public Long getTypeId() {

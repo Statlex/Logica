@@ -1,14 +1,13 @@
 package com.statlex.logica.integration.repository.entity;
 
 import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.statlex.logica.integration.repository.entity.id.TaskId;
 
 /**
@@ -28,10 +27,12 @@ public class Task {
 	@Column(name = "TASK_ORDER")
 	private Integer taskOrder;
 
-	@MapsId("languageId")
+	@MapsId("langId")
+	@ManyToOne
 	private Language language;
 
 	@MapsId("categoryId")
+	@ManyToOne
 	private Category category;
 
 	@OneToMany(mappedBy = "task")
